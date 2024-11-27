@@ -3,8 +3,31 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const { generateToken } = require('../utils/jwtHelper');
 const bcrypt = require('bcrypt');
-const { verifyToken, isSuperAdmin, protect, authorize } = require('../middleware/authMiddleware');
+const { verifyToken, authorize } = require('../middleware/authMiddleware');
+
+// Generate Token (Auth-related)
+router.post('/auth/generate-token', (req, res) => {
+    const { email, role } = req.body;
+
+    if (!email || !role) {
+        return res.status(400).json({ message: 'Email and role are required.' });
+    }
+
+    try {
+        const secret = process.env.JWT_SECRET;
+        if (!secret) {
+            return res.status(500).json({ message: 'JWT_SECRET not defined in environment variables.' });
+        }
+
+        const token = generateToken(email, role, secret);
+        res.status(200).json({ token });
+    } catch (error) {
+        console.error('Error generating token:', error);
+        res.status(500).json({ message: 'Internal server error.' });
+    }
+});
 
 // Super Admin can create Admin or User
 router.post('/superadmin/create', verifyToken, authorize('superadmin'), async (req, res) => {
@@ -25,6 +48,7 @@ router.post('/superadmin/create', verifyToken, authorize('superadmin'), async (r
             email,
             password,
             role,
+            isAdmin: role === 'admin' || 'superadmin',
         });
 
         await newUser.save();
@@ -35,7 +59,7 @@ router.post('/superadmin/create', verifyToken, authorize('superadmin'), async (r
     }
 });
 
-
+// Login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log('Login request received:', req.body);
@@ -57,11 +81,8 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         console.error('Error during login:', error); // Log the error for debugging
         res.status(500).json({ message: error.message });
-
     }
 });
-
-
 
 // Admin can only create normal users
 router.post('/admin/create', verifyToken, authorize('admin'), async (req, res) => {

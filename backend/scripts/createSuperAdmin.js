@@ -20,7 +20,7 @@ const createSuperAdmin = async () => {
             email: 'admin@example.com',
             password: 'password123', // Ideally, hash this password before saving
             isAdmin: true,
-            isSuperAdmin: true,
+            role: 'superadmin'
         });
 
         await user.save();

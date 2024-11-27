@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         isAdmin: { type: Boolean, default: false }, // Keep this for backward compatibility
-        role: { type: String, enum: ['superAdmin', 'admin', 'user'], default: 'user' },
+        role: { type: String, enum: ['superadmin', 'admin', 'user'], default: 'user' },
     },
     { timestamps: true }
 );

@@ -2,11 +2,12 @@
 
 # dependencies
 frontend/node_modules
+
 /.pnp
 .pnp.js
 
 # dotenv
-frontend/.env
+backend/.env
 
 # testing
 /coverage
