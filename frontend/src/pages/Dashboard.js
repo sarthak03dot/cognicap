@@ -1,16 +1,24 @@
-import React from 'react';
+// src/pages/Dashboard.js
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-    const user = JSON.parse(localStorage.getItem('userInfo')); // Adjust according to your auth setup
+    const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('userInfo')); // Adjust based on your auth setup
+
+    useEffect(() => {
+        if (user?.role === 'admin') {
+            navigate('/adminDashboard'); // Redirect to admin dashboard
+        } else if (user?.role === 'user') {
+            navigate('/userDashboard'); // Redirect to user dashboard
+        } else {
+            navigate('/login'); // Redirect to login if no valid role found
+        }
+    }, [user, navigate]);
 
     return (
         <div>
-            <h1>Welcome to the Dashboard</h1>
-            <p>User Role: {user?.role || 'Unknown'}</p>
-            {/* Display role-specific options */}
-            {/* {user?.role === 'superAdmin' && <p>You can manage admins & users both.</p>} */}
-            {user?.role === 'admin' && <p>You can manage users.</p>}
-            {user?.role === 'user' && <p>Welcome, normal user.</p>}
+            <h1>Loading Dashboard...</h1>
         </div>
     );
 };

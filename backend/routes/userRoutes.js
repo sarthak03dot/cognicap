@@ -48,7 +48,7 @@ router.post('/superadmin/create', verifyToken, authorize('superadmin'), async (r
             email,
             password,
             role,
-            isAdmin: role === 'admin' || 'superadmin',
+            isAdmin: role === 'admin' || role === 'superadmin',
         });
 
         await newUser.save();

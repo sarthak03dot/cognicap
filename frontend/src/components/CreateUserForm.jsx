@@ -1,35 +1,31 @@
+// src/components/CreateUserForm.jsx
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL, TOKEN_GENERATION_CREDENTIALS } from './config';
 
 axios.defaults.baseURL = API_BASE_URL;
 
-const CreateUserForm = () => {
+const CreateUserForm = ({ roleOptions = ['user', 'admin'] }) => { // Accept role options as a prop
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('user');
+    const [role, setRole] = useState(''); 
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchToken = async () => {
-            setLoading(true);
             try {
-                const response = await axios.post('/api/auth/generate-token', TOKEN_GENERATION_CREDENTIALS);
-                const token = response.data.token;
-
+                let token = localStorage.getItem('token');
                 if (!token) {
-                    throw new Error('Token generation failed');
+                    const response = await axios.post('/api/auth/generate-token', TOKEN_GENERATION_CREDENTIALS);
+                    token = response.data.token;
+                    localStorage.setItem('token', token);
                 }
-
-                localStorage.setItem('token', token);
-                console.log('Token fetched and stored:', token);
             } catch (error) {
-                console.error('Error fetching token:', error.response?.data || error.message);
-                setMessage('Error fetching token. Please try again.');
-            } finally {
-                setLoading(false);
+                console.error('Error fetching token:', error);
+                setMessage('Failed to fetch token. Please try again.');
             }
         };
 
@@ -53,9 +49,13 @@ const CreateUserForm = () => {
             );
 
             setMessage(response.data.message || 'User created successfully');
+            setName('');
+            setEmail('');
+            setPassword('');
+            setRole(roleOptions[0]); // Reset to default role
         } catch (error) {
             console.error('Error creating user:', error.response?.data || error.message);
-            setMessage(error.response?.data.message || 'Error creating user');
+            setMessage(error.response?.data?.message || 'Error creating user');
         } finally {
             setLoading(false);
         }
@@ -96,8 +96,11 @@ const CreateUserForm = () => {
                 <div>
                     <label>Role:</label>
                     <select value={role} onChange={(e) => setRole(e.target.value)}>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
+                        {roleOptions.map((option) => (
+                            <option key={option} value={option}>
+                                {option.charAt(0).toUpperCase() + option.slice(1)}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <button type="submit" disabled={loading}>Create User</button>
