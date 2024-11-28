@@ -3,14 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL, TOKEN_GENERATION_CREDENTIALS } from './config';
+import { useLocation } from 'react-router-dom'; // Import useLocation from React Router
 
 axios.defaults.baseURL = API_BASE_URL;
 
-const CreateUserForm = ({ roleOptions = ['user', 'admin'] }) => { // Accept role options as a prop
+const CreateUserForm = () => {
+    const location = useLocation(); // Get the current path
+    const isSuperAdmin = location.pathname === '/superadmin'; // Check if the path is superadmin
+    const roleOptions = isSuperAdmin ? ['user', 'admin'] : ['user']; // Set role options dynamically
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState(''); 
+    const [role, setRole] = useState(roleOptions[0]); // Default to the first option in roleOptions
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
 

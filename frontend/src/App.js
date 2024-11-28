@@ -7,6 +7,7 @@ import SuperAdminDashboard from './pages/SuperAdminDashboard';
 import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import UnauthorizedPage from './pages/Unauthorized.js';
+import Navbar from './components/Navbar.jsx';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,6 +28,7 @@ const App = () => {
 
     return (
         <Router>
+        <Navbar />
             <Routes>
                 {/* Public Route */}
                 <Route path="/" element={<LoginPage />} />
