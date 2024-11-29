@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../stylesheets/LoginPage.css';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -47,7 +48,9 @@ const LoginPage = () => {
     };
 
     return (
-        <div>
+        
+        <div className="login-container">
+        <div className="login-form">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <input
@@ -69,6 +72,8 @@ const LoginPage = () => {
             {/* Show error message if login fails */}
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
+        </div>
+        
     );
 };
 

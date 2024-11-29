@@ -7,11 +7,33 @@ import SuperAdminDashboard from './pages/SuperAdminDashboard';
 import UserDashboard from './pages/UserDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import UnauthorizedPage from './pages/Unauthorized.js';
+import './App.css'
 import Navbar from './components/Navbar.jsx';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [role, setRole] = useState(null);
+
+    useEffect(() => {
+        // Add mousemove event listener for the whole page
+        const handleMouseMove = (e) => {
+            const x = (e.clientX / window.innerWidth).toFixed(2); // Normalize to 0-1 range
+            const y = (e.clientY / window.innerHeight).toFixed(2); // Normalize to 0-1 range
+
+            // Debugging mouse coordinates
+            console.log('Mouse X:', x, 'Mouse Y:', y);
+
+            document.body.style.setProperty('--mouse-x', x);
+            document.body.style.setProperty('--mouse-y', y);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        // Cleanup event listener on unmount
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
 
     // Fetch role and token on app load
     useEffect(() => {

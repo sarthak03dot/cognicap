@@ -1,3 +1,6 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +38,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: radial-gradient(
+            circle at calc(var(--mouse-x, 0.5) * 100%) calc(var(--mouse-y, 0.5) * 100%),
+            rgba(255, 0, 0, 0.3),
+            transparent 60%
+        ),
+        radial-gradient(circle at 25% 30%, rgba(255, 0, 0, 0.15), transparent 70%),
+        radial-gradient(circle at 75% 70%, rgba(255, 69, 0, 0.15), transparent 75%);
+    background-color: #000; /* Fallback for unsupported browsers */
+    transition: background 0.1s ease;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }

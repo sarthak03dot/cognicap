@@ -1,0 +1,66 @@
+/* Navbar Container */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Reduce navbar height */
+    padding: 5px 15px; /* Compact padding */
+    display: flex;
+    justify-content: space-between; /* Space between logo, current path, and logout */
+    align-items: center;
+    background: radial-gradient(
+            circle at calc(var(--mouse-x, 0.5) * 100%) calc(var(--mouse-y, 0.5) * 100%),
+            rgba(255, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.8)
+        );
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Image */
+.logo {
+    width: 100px; /* Adjust size for compact layout */
+    height: 100px;
+    filter: drop-shadow(0 0 0 1rem black);
+    border-radius: 50%; /* Optional: Circular logo */
+    object-fit: cover;
+}
+
+/* Current Path */
+.current-path {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 auto; /* Center align the text */
+    text-align: center;
+    flex-grow: 1; /* Ensure it takes up available space */
+}
+
+/* Logout Button */
+.logout-button {
+    background: rgba(255, 255, 255, 0.1); /* Subtle transparent background */
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    z-index: 1000;
+    margin-right: 60px;
+    padding: 5px 10px; /* Compact button size */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logout-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
