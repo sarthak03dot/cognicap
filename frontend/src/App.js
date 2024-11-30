@@ -15,23 +15,22 @@ const App = () => {
     const [role, setRole] = useState(null);
 
     useEffect(() => {
-        // Add mousemove event listener for the whole page
-        const handleMouseMove = (e) => {
-            const x = (e.clientX / window.innerWidth).toFixed(2); // Normalize to 0-1 range
-            const y = (e.clientY / window.innerHeight).toFixed(2); // Normalize to 0-1 range
+        const updateMousePosition = (event) => {
+            // Normalize mouse position to a 0-1 range
+            const normalizedX = (event.clientX / window.innerWidth).toFixed(2);
+            const normalizedY = (event.clientY / window.innerHeight).toFixed(2);
 
-            // Debugging mouse coordinates
-            console.log('Mouse X:', x, 'Mouse Y:', y);
-
-            document.body.style.setProperty('--mouse-x', x);
-            document.body.style.setProperty('--mouse-y', y);
+            // Update CSS custom properties for gradient effect
+            document.body.style.setProperty('--mouse-x', normalizedX);
+            document.body.style.setProperty('--mouse-y', normalizedY);
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
+        // Attach mousemove listener
+        window.addEventListener('mousemove', updateMousePosition);
 
-        // Cleanup event listener on unmount
+        // Cleanup listener on component unmount
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mousemove', updateMousePosition);
         };
     }, []);
 

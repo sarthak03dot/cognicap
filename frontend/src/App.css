@@ -52,11 +52,51 @@ body {
         ),
         radial-gradient(circle at 25% 30%, rgba(255, 0, 0, 0.15), transparent 70%),
         radial-gradient(circle at 75% 70%, rgba(255, 69, 0, 0.15), transparent 75%);
-    background-color: #000; /* Fallback for unsupported browsers */
+    background-color: #000000; /* Fallback for unsupported browsers */
     transition: background 0.1s ease;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+body::-webkit-scrollbar {
+    width: 16px; /* Width of the vertical scrollbar */
+    height: 16px; /* Height of the horizontal scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: none; /* Transparent track background */
+    border-radius: 10px; /* Rounded corners for the track */
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1); /* Subtle inner shadow */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff4d4d, #ffc107, #ff4d4d); /* Glittering themed bar */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 3px solid rgba(0, 0, 0, 0.5); /* Adds transparency effect */
+    box-shadow: 0 0 8px rgba(255, 69, 0, 0.8); /* Glow effect for the scrollbar thumb */
+    animation: scroll-thumb-glow 2s infinite ease-in-out;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ffc107, #ff4d4d, #ffc107); /* Change color on hover */
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.8); /* Intensify glow on hover */
+}
+
+body::-webkit-scrollbar-corner {
+    background: transparent; /* Corner color */
+}
+
+/* Scroll Thumb Glow Animation */
+@keyframes scroll-thumb-glow {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(255, 69, 0, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(255, 255, 0, 0.8);
+    }
 }

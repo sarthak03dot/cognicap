@@ -51,7 +51,7 @@ const LoginPage = () => {
         
         <div className="login-container">
         <div className="login-form">
-            <h1>Login</h1>
+            <h1>Enter Your Credentials</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
@@ -73,6 +73,7 @@ const LoginPage = () => {
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </div>
         </div>
+        
         
     );
 };

@@ -35,10 +35,11 @@
     width: 50%;
     padding: 10px 15px;
     margin-top: 20px;
-    border: none;
+    border: 2px solid grey;
     border-radius: 8px;
-    background: linear-gradient(45deg, #ff4d4d, #ffcccb);
-    color: #000;
+    background: none;
+    /* background: linear-gradient(45deg, #4e2727, #ab5e5d); */
+    color: #fff;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -46,7 +47,8 @@
 }
 
 .login-form button:hover {
-    background: linear-gradient(45deg, #ffcccb, #ff4d4d);
+    /* background: linear-gradient(45deg, #ab5e5d, #4e2727); */
+    border: 3px solid rgb(179, 179, 179);
     transform: translateY(-2px);
 }
 

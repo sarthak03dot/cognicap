@@ -1,28 +1,29 @@
 /* General Layout */
 .dashboard-container {
     display: flex;
-    min-height: 100vh;
     font-family: Arial, sans-serif;
+    /* background: linear-gradient(120deg, #1c1c1c, #0b0b0b); */
 }
 
 /* Sidebar Styling */
 .sidebar {
     position: fixed;
-    top: 60px; /* Adjust for navbar height */
-    left: -450px; /* Initially hidden */
-    width: 250px;
-    height: calc(100% - 57px); /* Full height minus navbar */
-    background-color: #222;
+    top: 65px; /* Adjust for navbar height */
+    left: -500px; /* Initially hidden */
+    width: 300px; /* Wider for better spacing */
+    height: calc(100% - 60px); /* Full height minus navbar */
     color: #fff;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    background-color: rgba(40, 10, 10, 0.8);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
     overflow-y: auto;
-    transition: left 0.3s ease;
+    transition: left 0.3s ease, opacity 0.3s ease;
     z-index: 1000;
 }
 
 .sidebar.open {
     left: 0; /* Slide in */
+    opacity: 1;
 }
 
 /* Close Button */
@@ -41,28 +42,33 @@
 .sidebar-menu {
     list-style: none;
     padding: 0;
-    margin-top: 40px;
+    margin: 60px 0; /* Space below close button */
+    display: flex;
+    flex-direction: column; /* Arrange buttons vertically */
+    gap: 25px; /* Even spacing between buttons */
 }
 
 .sidebar-menu li {
-    margin: 15px 0;
+    width: 100%;
 }
 
+/* Sidebar Buttons */
 .sidebar-menu button {
     width: 100%;
-    padding: 10px 15px;
-    background: #444;
+    padding: 15px;
+    background: rgba(50, 50, 50, 0.6);
     border: none;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     text-align: left;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .sidebar-menu button:hover {
-    background: #666;
+    background: rgba(255, 0, 0, 0.3);
+    transform: translateX(5px); /* Subtle movement effect */
 }
 
 /* Main Content Styling */
@@ -75,37 +81,345 @@
 }
 
 .sidebar.open ~ .main-content {
-    margin-left: 250px; /* Push content when sidebar is open */
+    margin-left: 300px; /* Push content when sidebar is open */
 }
 
 /* Toggle Button */
 .toggle-btn {
     position: fixed;
     top: 75px; /* Below the navbar */
-    left: 15px;
-    background: #444;
+    left: 25px;
+    background: rgba(50, 50, 50, 0.9);
     color: #fff;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
     font-size: 18px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 8px;
     z-index: 1100;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .toggle-btn:hover {
-    background: #666;
+    background: rgba(255, 0, 0, 0.8);
+    transform: translateX(5px); /* Subtle movement effect */
 }
 
-.logo-container {
+/* Progress Section Container */
+.progress-container {
+    margin: 20px auto;
+    width: 90%; /* Use maximum width with a margin */
+    max-width: 1200px; /* Limit the width on larger screens */
+    padding: 40px;
+    background: rgba(30, 30, 30, 0.2);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: #fff;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Milestone Bar */
+.milestone-bar {
+    position: relative;
+    width: 100%;
+    height: 15px; /* Slightly thicker bar for better visibility */
+    background: rgba(60, 60, 60, 0.9);
+    border-radius: 15px;
+    margin: 30px auto;
+    overflow: visible;
+}
+
+/* Progress Indicator */
+.progress-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Matches the height of the milestone bar */
+    background: linear-gradient(90deg, #ff5722, #ffc107);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.6);
+    transition: width 0.7s ease; /* Smooth animation for progress changes */
+}
+
+/* Milestone Flags */
+.milestone-flag {
+    position: absolute;
+    top: -40px; /* Adjusted for more spacing */
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 14px; /* Slightly larger for readability */
+    color: rgba(255, 255, 255, 0.9);
+    animation: slideIn 0.7s ease;
+}
+
+.milestone-flag span {
+    display: block;
+    background: rgba(50, 50, 50, 0.9);
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.milestone-flag:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: rgba(50, 50, 50, 0.9);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+/* Milestone Positions */
+.milestone-bar .milestone-flag:nth-child(1) {
+    left: 0%;
+}
+.milestone-bar .milestone-flag:nth-child(2) {
+    left: 25%;
+}
+.milestone-bar .milestone-flag:nth-child(3) {
+    left: 50%;
+}
+.milestone-bar .milestone-flag:nth-child(4) {
+    left: 75%;
+}
+.milestone-bar .milestone-flag:nth-child(5) {
+    left: 100%;
+}
+
+/* Resources Section Container */
+.resources-container {
+    margin: 40px auto;
+    width: 90%; /* Use maximum width */
+    max-width: 1200px; /* Limit width for larger screens */
+    padding: 30px;
+    background: rgba(30, 30, 30, 0.2);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    animation: fadeIn 0.5s ease-in-out;
+    overflow-y: auto;
+    max-height: 400px; /* Allow scrollability for long content */
+}
+
+/* Resources Title */
+.resources-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Scrollable List */
+.resources-list {
+    list-style: none;
+    padding: 0;
+}
+
+.resources-list li {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.resources-list li:hover {
+    background: rgba(255, 0, 0, 0.2);
+    transform: translateX(10px); /* Subtle animation on hover */
+    border-radius: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Extra Dummy Content */
+.extra-content p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* Goals Section */
+.goals-container {
+    width: 100%;
+    max-width: 600px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 8px 20px rgba(102, 51, 153, 0.3);
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.goals-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(102, 51, 153, 0.5);
+}
+
+.goals-list {
+    list-style: none;
+    padding: 0;
+}
+
+.goals-list li {
+    font-size: 1rem;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.goals-list li:last-child {
+    border-bottom: none;
+}
+
+/* Quick Notes Section */
+.notes-container {
+    width: 100%;
+    max-width: 600px;
+    background: none;
+    color: #fff;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin: 20px 0;
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notes-container:hover {
+    transform: scale(1.05);
+}
+
+.notes-input {
     display: flex;
-    align-items: center;
+    margin-bottom: 10px;
 }
 
-/* Logo Image */
-.logo {
-    width: 250px; /* Adjust size for compact layout */
-    height: 250px;
-    border-radius: 50%; /* Optional: Circular logo */
-    object-fit: cover;
+.notes-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-right: 10px;
+    outline: none;
+}
+
+.notes-input button {
+    background: #fff;
+    color: #ff7e5f;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.notes-input button:hover {
+    background: #ff7e5f;
+    color: #fff;
+}
+
+.notes-list {
+    list-style: none;
+    padding: 0;
+}
+
+.notes-list li {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+}
+
+/* Community Chat Section */
+.chat-preview-container {
+    width: 100%;
+    max-width: 600px;
+    background: none;
+    color: #fff;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin: 20px 0;
+    transform: scale(1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-preview-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(17, 153, 142, 0.5);
+}
+
+.chat-preview-list {
+    list-style: none;
+    padding: 0;
+}
+
+.chat-preview-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+}
+
+.chat-preview-list li strong {
+    color: #fff;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.goals-container,
+.notes-container,
+.chat-preview-container {
+    animation: fadeIn 0.5s ease forwards;
 }
