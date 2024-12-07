@@ -1,0 +1,86 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15%;
+    padding: 20px;
+    color: white;
+    min-height: 100vh;
+}
+
+.main-content {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #ffa500;
+}
+
+.fetch-user-form, .de-link-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fetch-user-input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ffa500;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+}
+
+.fetch-user-button, .de-link-button {
+    padding: 10px 20px;
+    background: #ffa500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fetch-user-button:hover, .de-link-button:hover {
+    background: #e89c00;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.chart-section, .info-section {
+    flex: 1;
+    background: #333;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.chart-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.info-section {
+    text-align: left;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    text-align: center;
+}

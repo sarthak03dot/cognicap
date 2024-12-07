@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../stylesheets/UserDashboard.css';
+import Sidebar from './Sidebar';
 
 const UserDashboard = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -20,52 +21,24 @@ const UserDashboard = () => {
     return (
         <div className="dashboard-container">
             {/* Sidebar */}
-            <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-                <button className="close-btn" onClick={toggleSidebar}>
-                    &times;
-                </button>
-                <ul className="sidebar-menu">
-                    <li><button>Your Coding Profile</button></li>
-                    <li><button>Purchased Courses</button></li>
-                    <li><button>Community Docs</button></li>
-                    <li><button>Open Discussion</button></li>
-                    <li><button>All Courses</button></li>
-                    <li><button>Blogs</button></li>
-                    <li><button>Settings</button></li>
-                </ul>
-            </div>
-
-            {/* Main Content */}
+            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+            {/* Sidebar */}
             <div className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
                 <button className="toggle-btn" onClick={toggleSidebar}>
                     ☰
                 </button>
+
                 <h1>Track Your Progress</h1>
 
                 {/* Progress Section */}
                 <div className="progress-container">
                     <div className="milestone-bar">
-                        {/* Milestone Flags */}
-                        <div className="milestone-flag">
-                            <span>0%</span>
-                        </div>
-                        <div className="milestone-flag">
-                            <span>25%</span>
-                        </div>
-                        <div className="milestone-flag">
-                            <span>50%</span>
-                        </div>
-                        <div className="milestone-flag">
-                            <span>75%</span>
-                        </div>
-                        <div className="milestone-flag">
-                            <span>100%</span>
-                        </div>
-
-                        {/* Progress Indicator */}
-                        <div className="progress-indicator" style={{ width: '60%' }}>
-                            {/* Adjust width dynamically */}
-                        </div>
+                        <div className="milestone-flag"><span>0%</span></div>
+                        <div className="milestone-flag"><span>25%</span></div>
+                        <div className="milestone-flag"><span>50%</span></div>
+                        <div className="milestone-flag"><span>75%</span></div>
+                        <div className="milestone-flag"><span>100%</span></div>
+                        <div className="progress-indicator" style={{ width: '60%' }}></div>
                     </div>
                 </div>
 
@@ -115,7 +88,6 @@ const UserDashboard = () => {
                         <li><strong>You:</strong> Join the conversation in the community section!</li>
                     </ul>
                 </div>
-                
             </div>
         </div>
     );

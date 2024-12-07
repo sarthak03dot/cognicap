@@ -21,6 +21,11 @@
     z-index: 1000;
 }
 
+.sidebar-menu button a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
 .sidebar.open {
     left: 0; /* Slide in */
     opacity: 1;
@@ -59,6 +64,7 @@
     background: rgba(50, 50, 50, 0.6);
     border: none;
     color: #fff;
+    text-decoration: none;
     font-size: 18px;
     text-align: left;
     border-radius: 8px;
@@ -422,4 +428,76 @@
 .notes-container,
 .chat-preview-container {
     animation: fadeIn 0.5s ease forwards;
+}
+
+/* Fetch User Section */
+.fetch-user-section {
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #fff;
+    max-width: 500px;
+}
+
+.fetch-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fetch-user-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgba(50, 50, 50, 0.8);
+    color: #fff;
+    outline: none;
+}
+
+.fetch-user-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.fetch-user-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #ff5722, #ffc107);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.fetch-user-button:hover {
+    background: linear-gradient(45deg, #ffc107, #ff5722);
+    transform: translateY(-2px);
+}
+
+/* Error Message */
+.error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* User Info Section */
+.user-info-section {
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    color: #fff;
+    max-width: 500px;
+}
+
+.user-info-section p {
+    margin: 10px 0;
+    font-size: 16px;
 }

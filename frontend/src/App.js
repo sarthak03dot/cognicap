@@ -9,6 +9,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import UnauthorizedPage from './pages/Unauthorized.js';
 import './App.css'
 import Navbar from './components/Navbar.jsx';
+import AppRoutes from './Routes/AppRoutes.js';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -50,6 +51,7 @@ const App = () => {
     return (
         <Router>
         <Navbar />
+        <AppRoutes />
             <Routes>
                 {/* Public Route */}
                 <Route path="/" element={<LoginPage />} />
