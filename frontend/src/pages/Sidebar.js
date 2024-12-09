@@ -13,7 +13,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <li><button><Link to="/profile">Your Coding Profile</Link></button></li>
                 <li><button>Active Courses</button></li>
                 <li><button>Community Docs</button></li>
-                <li><button>Open Discussion</button></li>
+                <li><button><Link to="/openDiscussion">Open Discussion</Link></button></li>
                 <li><button>All Courses</button></li>
                 <li><button>Blogs</button></li>
                 <li><button>Settings</button></li>

@@ -4,6 +4,7 @@ import CodingProfile from '../pages/CodingProfile';
 import ProtectedRoute from '../components/ProtectedRoute';
 import CreateUserFromAdmin from '../pages/CreateUserFromAdmin';
 import UserManagement from '../components/UserManagement';
+import OpenDiscussion from '../components/Open Discussion';
 
 const AppRoutes = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -60,6 +61,19 @@ const AppRoutes = () => {
                         </ProtectedRoute>
                     }
                 />
+                <Route
+    path="/openDiscussion"
+    element={
+        <ProtectedRoute
+            isAuthenticated={isAuthenticated}
+            requiredRole="user, superadmin, admin"
+            userRole={role}
+        >
+            <OpenDiscussion /> {/* Use OpenDiscussion instead of CodingProfile */}
+        </ProtectedRoute>
+    }
+/>
+   
         </Routes>
     );
 };
