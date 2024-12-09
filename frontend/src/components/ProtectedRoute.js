@@ -5,11 +5,11 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     const token = localStorage.getItem('token');
     const userRole = localStorage.getItem('role');
 
-    console.log('ProtectedRoute Debug:', {
-        token,
-        userRole,
-        requiredRole,
-    });
+    // console.log('ProtectedRoute Debug:', {
+    //     token,
+    //     userRole,
+    //     requiredRole,
+    // });
 
     // Redirect to login if not authenticated
     if (!token) {

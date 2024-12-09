@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import CodingProfile from '../pages/CodingProfile';
 import ProtectedRoute from '../components/ProtectedRoute';
 import CreateUserFromAdmin from '../pages/CreateUserFromAdmin';
+import UserManagement from '../components/UserManagement';
 
 const AppRoutes = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -36,7 +37,7 @@ const AppRoutes = () => {
                     }
                 />
         <Route
-                    path="createUser"
+                    path="/adminDashboard/createUser"
                     element={
                         <ProtectedRoute
                             isAuthenticated={isAuthenticated}
@@ -44,6 +45,18 @@ const AppRoutes = () => {
                             userRole={role}
                         >
                             <CreateUserFromAdmin />
+                        </ProtectedRoute>
+                    }
+                />
+            <Route
+                    path="/adminDashboard/userManagement"
+                    element={
+                        <ProtectedRoute
+                            isAuthenticated={isAuthenticated}
+                            requiredRole="admin"
+                            userRole={role}
+                        >
+                            <UserManagement />
                         </ProtectedRoute>
                     }
                 />
