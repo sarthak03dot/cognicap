@@ -444,7 +444,7 @@ const CodingProfile = () => {
           )}
         </div>
         {/* <p className="coming-soon">
-          🚀 Coming Soon! Stay Tuned for More Features! 🚀
+          🚀 Coming Soon! Stay Tuned for More Features! 🚀  
         </p> */}
       </div>
     </div>
